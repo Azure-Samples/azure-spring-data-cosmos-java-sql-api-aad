@@ -1,6 +1,6 @@
 # Azure Cosmos DB Spring Data RBAC with AAD Sample
 
-Azure Cosmos DB Spring Data RBAC with AAD Sample code
+Azure Cosmos DB Spring Data RBAC with AAD Sample code.
 
 ## Features
 
@@ -29,7 +29,8 @@ SLF4J is only needed if you plan to use logging, please also download an SLF4J b
 
 1. In the [authentication](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal#authentication-two-options) section, be sure to select **option 2** to create a new application secret, and make sure you store the secret value somewhere in a text editor. 
 
-1. Search for your app in Azure Portal --> Azure Active Directory --> App Registrations. You should see information like the below
+1. Search for your app in Azure Portal --> Azure Active Directory --> App Registrations. You should see information like the below:
+
     ![app](/media/aad-app.png?raw=true "aad app")
 
 1. Review `resources/application.properties` in the repo you have cloned. 
@@ -60,7 +61,7 @@ Next we need to create a role that can access your Cosmos DB account appropriate
     }
     ```
  
-1. Upload the JSON file to Azure CLI, then create the role, replacing `<myResourceGroup>` and `<myCosmosAccount>` with the resource group name and Cosmos DB account name respectively:
+1. Upload the JSON file to Azure CLI, then run the below to create the role, replacing `<myResourceGroup>` and `<myCosmosAccount>` with the resource group name and Cosmos DB account name respectively:
 
     ```azurecli-interactive
     resourceGroupName='<myResourceGroup>'
@@ -119,7 +120,8 @@ Next we need to create a role that can access your Cosmos DB account appropriate
 
 1. Now that you have created an AAD application and service principle, created a custom role, and assigned that role permissions to your Cosmos DB account, you should be able to start your application.
 1. run `mvn clean spring-boot:run`
-1. Note the following line of code in `SampleAppConfiguration.java`
+1. Note the following line of code in `SampleAppConfiguration.java`:
+
     ```java
     checkAADSetup(servicePrincipal);
     ```
