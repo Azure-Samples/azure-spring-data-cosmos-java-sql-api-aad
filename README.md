@@ -26,10 +26,13 @@ SLF4J is only needed if you plan to use logging, please also download an SLF4J b
 ### Create an Azure AD application and service principal
 
 1. Following the instructions [here](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal) for creating an Azure AD application and service principal.
+
 1. In the [authentication](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal#authentication-two-options) section, be sure to select **option 2** to create a new application secret, and make sure you store the secret value somewhere in a text editor. 
+
 1. Search for you app in Azure Portal --> Azure Active Directory --> App Registrations. You should see information like the below
     ![app](/media/aad-app.png?raw=true "aad app")
-1. Review `resources/application.properties` in this repo. 
+
+1. Review `resources/application.properties` in the repo you have cloned. 
     - Replace `<Cosmos URI>` with the URI of your Cosmos DB account
     - Replace `<tenantId>` with `Directory (tenant) ID` from the portal. 
     - Replace `<clientId>` with `Application (client) ID` from the portal
@@ -38,7 +41,7 @@ SLF4J is only needed if you plan to use logging, please also download an SLF4J b
     
 ### Configure RBAC for your Cosmos DB account
 
-Next we need to create a role that can access your Cosmos DB account appropriately. You should refer to the full instructions [here](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac) for the various options, we'll just keep things simple here by creating a customer role using Azure CLI that has full permissions.
+Next we need to create a role that can access your Cosmos DB account appropriately. You should refer to the full instructions [here](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac) for the various options, we'll just keep things simple here by creating a custom role using Azure CLI that has full permissions.
 
 1. First, create a JSON file called `role-definition-rw.json` that contains the following:
 
@@ -70,7 +73,7 @@ Next we need to create a role that can access your Cosmos DB account appropriate
     az cosmosdb sql role definition list --account-name $accountName --resource-group $resourceGroupName
     ```
 
-1. This should bring back the below:
+1. This should bring back a response like the below:
 
     ```json
     [
@@ -98,9 +101,9 @@ Next we need to create a role that can access your Cosmos DB account appropriate
     ]
     ``` 
 
-1. Now go to Azure Portal --> Azure Active Directory --> Enterprise Applications and search for the application you created earlier. Record the Object ID found here.
+1. Now go to Azure Portal --> Azure Active Directory --> Enterprise Applications and search for the application you created earlier. Record the `Object ID` found here.
 
-1. Now create a role assignment. Replace the `<aadPrincipalId>` with Object ID you recorded above (note this is NOT the same as Object ID visible from the app registrations view). Also replace `<myResourceGroup>` and `<myCosmosAccount>` accordingly in the below. Replace `roleDefinitionId>` with the value fetched from running the above command. Then run in Azure CLI:
+1. Now create a role assignment. Replace the `<aadPrincipalId>` with `Object ID` you recorded above (note this is NOT the same as Object ID visible from the app registrations view). Also replace `<myResourceGroup>` and `<myCosmosAccount>` accordingly in the below. Replace `roleDefinitionId>` with the value fetched from running the above command. Then run in Azure CLI:
 
     ```azurecli-interactive
     resourceGroupName='<myResourceGroup>'
@@ -114,8 +117,8 @@ Next we need to create a role that can access your Cosmos DB account appropriate
 
 ### Run the application
 
-1. Now that you have created an AAD application and service principle, created a custom role, and assigned that role permissions to your Cosmos DB account, you should be able to start your application
-1. mvn spring-boot:run
+1. Now that you have created an AAD application and service principle, created a custom role, and assigned that role permissions to your Cosmos DB account, you should be able to start your application.
+1. run `mvn clean spring-boot:run`
 1. Note the following line of code in `SampleAppConfiguration.java`
     ```java
     checkAADSetup(servicePrincipal);
@@ -124,4 +127,4 @@ Next we need to create a role that can access your Cosmos DB account appropriate
 
 ## Resources
 
-Please refer to azure spring data cosmos for sql api [source code](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cosmos) for more information.
+Please refer to azure spring data cosmos for sql api [source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-spring-data-cosmos) for more information.
