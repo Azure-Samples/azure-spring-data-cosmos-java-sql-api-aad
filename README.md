@@ -29,7 +29,7 @@ SLF4J is only needed if you plan to use logging, please also download an SLF4J b
 
 1. In the [authentication](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal#authentication-two-options) section, be sure to select **option 2** to create a new application secret, and make sure you store the secret value somewhere in a text editor. 
 
-1. Search for you app in Azure Portal --> Azure Active Directory --> App Registrations. You should see information like the below
+1. Search for your app in Azure Portal --> Azure Active Directory --> App Registrations. You should see information like the below
     ![app](/media/aad-app.png?raw=true "aad app")
 
 1. Review `resources/application.properties` in the repo you have cloned. 
@@ -101,9 +101,9 @@ Next we need to create a role that can access your Cosmos DB account appropriate
     ]
     ``` 
 
-1. Now go to Azure Portal --> Azure Active Directory --> Enterprise Applications and search for the application you created earlier. Record the `Object ID` found here.
+1. Now go to Azure Portal --> Azure Active Directory --> **Enterprise Applications** and search for the application you created earlier. Record the `Object ID` found here.
 
-1. Now create a role assignment. Replace the `<aadPrincipalId>` with `Object ID` you recorded above (note this is NOT the same as Object ID visible from the app registrations view). Also replace `<myResourceGroup>` and `<myCosmosAccount>` accordingly in the below. Replace `roleDefinitionId>` with the value fetched from running the above command. Then run in Azure CLI:
+1. Now create a role assignment. Replace the `<aadPrincipalId>` with `Object ID` you recorded above (note this is **NOT** the same as Object ID visible from the app registrations view you saw earlier). Also replace `<myResourceGroup>` and `<myCosmosAccount>` accordingly in the below. Replace `roleDefinitionId>` with the value fetched from running the above command. Then run in Azure CLI:
 
     ```azurecli-interactive
     resourceGroupName='<myResourceGroup>'
