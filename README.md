@@ -4,7 +4,7 @@ Azure Cosmos DB Spring Data RBAC with AAD Sample code.
 
 ## Features
 
-This repo provides basic Spring Data sample code for Java SQL API to connect to [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction) using built-in role-based access control (RBAC), and authenticating using Azure Active Directory (AAD). We'll also give you a short tutorial on setting up the RBAC and AAD requirements to be able to access your Cosmos DB account.
+This repo provides basic Spring Data sample code for Java SQL API to connect to [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction) using built-in role-based access control (RBAC), and authenticating using Azure Active Directory (AAD). We'll also give you a short tutorial below on setting up the RBAC/AAD requirements to access your Cosmos DB account and run the app successfully.
 
 ## Getting Started
 
